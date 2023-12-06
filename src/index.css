@@ -183,6 +183,10 @@ Cart
   color: var(--clr-grey-5);
   margin-top: 1rem;
   text-align: center;
+  font-weight: 700;
+  letter-spacing: var(--spacing);
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
 }
 .cart footer {
   margin-top: 4rem;

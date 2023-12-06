@@ -15,9 +15,21 @@ const cartSlice = createSlice({
     clearCart: (state) => {
       state.cartItems = [];
     },
+    removeItem: (state, { payload: id }) => {
+      state.cartItems = state.cartItems.filter((item) => item.id !== id);
+    },
+    increaseItem: (state, { payload: id }) => {
+      const currentItem = state.cartItems.find((item) => item.id === id);
+      currentItem.amount = currentItem.amount + 1;
+    },
+    decreaseItem: (state, { payload: id }) => {
+      const currentItem = state.cartItems.find((item) => item.id === id);
+      currentItem.amount = currentItem.amount - 1;
+    },
   },
 });
 
-export const { clearCart } = cartSlice.actions;
+export const { clearCart, removeItem, increaseItem, decreaseItem } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

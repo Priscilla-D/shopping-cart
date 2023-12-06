@@ -48,14 +48,3 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
-
-// calculateTotals: (state) => {
-//       let amount = 0;
-//       let total = 0;
-//       state.cartItems.map((item) => {
-//         amount += item.amount;
-//         total += item.price * item.amount;
-//       });
-//       state.amount = amount;
-//       state.total = total;
-//     },

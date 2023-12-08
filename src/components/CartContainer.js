@@ -1,33 +1,31 @@
-import { useSelector, useDispatch } from "react-redux";
 import CartItems from "./CartItems";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../features/modal/modalSlice";
 
 const CartContainer = () => {
   const dispatch = useDispatch();
+  const { cartItems, total, amount } = useSelector((store) => store.cart);
 
-  const { cartItems, amount, total, isLoading } = useSelector(
-    (store) => store.cart
-  );
-
-  if (!isLoading && amount < 1) {
+  if (amount < 1) {
     return (
       <section className="cart">
         <header>
-          <h2>Your bag</h2>
-          <p className="empty-cart">is currently empty</p>
+          <h2>your bag</h2>
+          <h4 className="empty-cart">is currently empty</h4>
         </header>
       </section>
     );
   }
+
   return (
     <section className="cart">
       <header>
-        <h2>Your bag</h2>
+        <h2>your bag</h2>
       </header>
       <div>
-        {cartItems.map((item) => (
-          <CartItems key={item.id} {...item} />
-        ))}
+        {cartItems.map((item) => {
+          return <CartItems key={item.id} {...item} />;
+        })}
       </div>
       <footer>
         <hr />

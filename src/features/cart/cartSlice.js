@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems: [],
-  amount: 1,
+  amount: 0,
   total: 0,
   isLoading: false,
 };
@@ -45,17 +45,18 @@ const cartSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getCartItems.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(getCartItems.fulfilled, (state, action) => {
-      const datas = action.payload;
-      state.isLoading = false;
-      state.cartItems = datas;
-    });
-    builder.addMatcher(getCartItems.rejected, (state) => {
-      state.isLoading = false;
-    });
+    builder
+      .addCase(getCartItems.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCartItems.fulfilled, (state, action) => {
+        const datas = action.payload;
+        state.isLoading = false;
+        state.cartItems = datas;
+      })
+      .addCase(getCartItems.rejected, (state, action) => {
+        state.isLoading = false;
+      });
   },
 });
 
